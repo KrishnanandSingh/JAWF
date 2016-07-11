@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management</title>
+</head>
+<body>
+	<h1>Employee management</h1>
+	<div id="employeeForm">
+		<div id="notification"></div>
+		<form>
+			<table>
+				<tr>
+					<td>Name of the employee</td>
+					<td><input type="text" name="name"></td>
+				</tr>
+				<tr>
+					<td>Employee ID</td>
+					<td><input type="text" name="mID"></td>
+				</tr>
+				<tr>
+					<td>Competency</td>
+					<td><input type="text" name="competency"></td>
+				</tr>
+				<tr>
+					<td>Sub Practice</td>
+					<td><input type="text" name="subpractice"></td>
+				</tr>
+				<tr>
+					<td>Vertical</td>
+					<td><input type="text" name="vertical"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="Save Details"
+						onclick="saveEmployee()"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<br>
+	<br>
+	<div id="searchBox">
+		<form>
+			<table>
+				<tr>
+					<td>Employee ID</td>
+					<td><input type="text" name="mID"></td>
+				</tr>
+				<tr>
+					<td><input type="button" value="Search employee"
+						onclick="searchEmployee()"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<!-- Scripts goes here  -->
+	<script type="text/javascript" src="resources/js/jquery-latest.min.js"></script>
+	<script type="text/javascript" src="resources/js/index.js"></script>
+</body>
+</html>
