@@ -23,7 +23,8 @@ public class FetchMeta implements RequestHandler {
 		String md=gson.toJson(metadata);
 		try {
 			PrintWriter out = response.getWriter();
-			out.println(md);
+			out.append(md);
+			out.close();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

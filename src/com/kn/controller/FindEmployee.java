@@ -22,14 +22,16 @@ public class FindEmployee implements RequestHandler {
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) {
 		String mID = request.getParameter("mID");
-		System.out.println("Finding employee for mID:"+mID);
-		EmployeeDao empdao=new EmployeeDao();
-		EmployeeDto employee=empdao.findEmployee(mID);
-		Gson gson=new Gson();
-		String emp=gson.toJson(employee);
+		System.out.println("Finding employee for mID:" + mID);
+		EmployeeDao empdao = new EmployeeDao();
+		EmployeeDto employee = empdao.findEmployee(mID);
+		Gson gson = new Gson();
+		String emp = gson.toJson(employee);
 		try {
 			PrintWriter out = response.getWriter();
-			out.println(emp);
+			out.append(emp);
+			out.close();
+			System.out.println(emp);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
