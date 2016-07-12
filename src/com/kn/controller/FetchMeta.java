@@ -7,33 +7,28 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.kn.dao.EmployeeDao;
-import com.kn.dto.EmployeeDto;
+import com.kn.dao.MetaDataDao;
+import com.kn.dto.MetaData;
 import com.kn.processor.RequestHandler;
 import com.kn.processor.URLMapping;
 
-/**
- * @author krishnanand
- *
- */
-@URLMapping(urlPattern = "/findEmployee.do")
-public class FindEmployee implements RequestHandler {
+@URLMapping(urlPattern = "/metaData.do")
+public class FetchMeta implements RequestHandler {
 
 	@Override
 	public void process(HttpServletRequest request, HttpServletResponse response) {
-		String mID = request.getParameter("mID");
-		System.out.println("Finding employee for mID:"+mID);
-		EmployeeDao empdao=new EmployeeDao();
-		EmployeeDto employee=empdao.findEmployee(mID);
+		MetaDataDao metadao=new MetaDataDao();
+		MetaData metadata=metadao.getData();
 		Gson gson=new Gson();
-		String emp=gson.toJson(employee);
+		String md=gson.toJson(metadata);
 		try {
 			PrintWriter out = response.getWriter();
-			out.println(emp);
+			out.println(md);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		
 	}
 
 }

@@ -1,3 +1,12 @@
+getMeta();
+
+function getMeta(){
+	$.getJSON('metaData.do?', function(result) {
+		console.log(result);
+	});
+}
+
+
 function searchEmployee() {
 	var mID = $("#searchBox input[name='mID']").val();
 	console.log(mID);

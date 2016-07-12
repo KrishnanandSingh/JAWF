@@ -4,14 +4,14 @@ package com.kn.dto;
  * @author krishnanand
  *
  */
-public class Employee {
+public class EmployeeDto {
 	private String name;
 	private String mID;
 	private String competency;
 	private String subpractice;
 	private String vertical;
 
-	public Employee() {
+	public EmployeeDto() {
 	}
 
 	/**
@@ -21,7 +21,7 @@ public class Employee {
 	 * @param subpractice
 	 * @param vertical
 	 */
-	public Employee(String name, String mID, String competency, String subpractice, String vertical) {
+	public EmployeeDto(String name, String mID, String competency, String subpractice, String vertical) {
 		super();
 		this.name = name;
 		this.mID = mID;
@@ -131,7 +131,7 @@ public class Employee {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Employee other = (Employee) obj;
+		EmployeeDto other = (EmployeeDto) obj;
 		if (mID == null) {
 			if (other.mID != null)
 				return false;
