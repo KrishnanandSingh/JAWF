@@ -1,25 +1,27 @@
 package com.kn.processor;
 
+import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 /**
- * Factory class to find and map {@linkplain RequestHandler}s annotated with
+ * Factory class to find and map {@linkplain Handler}s annotated with
  * {@linkplain URLMapping} </br>
  * Usage:</br>
  * String[] packages = new String[] { "com.kn.frontcontroller"};</br>
- * HandlerFactory.initializeHandlers(getClass().getClassLoader(), packages); </br>
+ * HandlerFactory.initializeHandlers(getClass().getClassLoader(),
+ * packages); </br>
  * 
  * @author krishnanand
  *
  */
 public class HandlerFactory {
 
-	private static Map<String, RequestHandler> handlers = new HashMap<>();
+	private static Map<String, Handler> requestMappings = new HashMap<>();
 
-	public static RequestHandler getRequestHandler(String url) {
-		return handlers.get(url);
+	public static Handler getHandler(String url) {
+		return requestMappings.get(url);
 	}
 
 	/**
@@ -30,24 +32,37 @@ public class HandlerFactory {
 	 */
 	public static void initializeHandlers(ClassLoader classLoader, String[] packages) {
 		AnnotationProcessor ap = new AnnotationProcessor();
-		Set<Class<?>> classes = ap.processAnnotations(URLMapping.class, packages, classLoader);
+		Set<Class<?>> classes = ap.processAnnotations(RequestHandler.class, packages, classLoader);
 		System.out.println("Initializing handlers");
 		if (classes.size() > 0) {
 			StringBuilder mappings = new StringBuilder();
-			for (Class<?> handler : classes) {
-				URLMapping urlMapping = handler.getAnnotation(URLMapping.class);
+			for (Class<?> clazz : classes) {
 				try {
-					RequestHandler requestHandler = (RequestHandler) handler.newInstance();
-					handlers.put(urlMapping.urlPattern(), requestHandler);
-					mappings.append("[\"" + urlMapping.urlPattern() + "\",\"" + requestHandler.getClass() + "\"]");
-					mappings.append(", ");
+					System.out.println(clazz);
+
+					Object classObj = clazz.newInstance();
+					Method[] publicMethods = clazz.getMethods();
+					for (Method method : publicMethods) {
+						URLMapping urlMapping = method.getAnnotation(URLMapping.class);
+						if (urlMapping != null) {
+							Handler handler = new Handler(classObj, method);
+							requestMappings.put(urlMapping.urlPattern(), handler);
+							mappings.append("[\"" + urlMapping.urlPattern() + "\",\"" + clazz.getName() + "-"
+									+ method.getName() + "()\"]");
+							mappings.append(", ");
+						}
+					}
 				} catch (InstantiationException e) {
 					e.printStackTrace();
 				} catch (IllegalAccessException e) {
 					e.printStackTrace();
 				}
 			}
-			System.out.println("Mappings found: " + mappings.substring(0, mappings.toString().length() - 2));
+			if (mappings.length() > 2) {
+				System.out.println("Mappings found: " + mappings.substring(0, mappings.toString().length() - 2));
+			} else {
+				System.err.println("No mappings found");
+			}
 		} else {
 			System.err.println("No mappings found");
 		}

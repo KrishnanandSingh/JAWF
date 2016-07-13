@@ -16,10 +16,10 @@ import com.kn.processor.URLMapping;
  * @author krishnanand
  *
  */
-@URLMapping(urlPattern = "/findEmployee.do")
-public class FindEmployee implements RequestHandler {
+@RequestHandler
+public class FindEmployee {
 
-	@Override
+	@URLMapping(urlPattern = "/findEmployee.do")
 	public void process(HttpServletRequest request, HttpServletResponse response) {
 		String mID = request.getParameter("mID");
 		System.out.println("Finding employee for mID:" + mID);

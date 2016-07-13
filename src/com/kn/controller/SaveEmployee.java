@@ -13,10 +13,10 @@ import com.kn.dto.Message.TYPE;
 import com.kn.processor.RequestHandler;
 import com.kn.processor.URLMapping;
 
-@URLMapping(urlPattern = "/saveEmployee.do")
-public class SaveEmployee implements RequestHandler {
+@RequestHandler
+public class SaveEmployee {
 
-	@Override
+	@URLMapping(urlPattern = "/saveEmployee.do")
 	public void process(HttpServletRequest request, HttpServletResponse response) {
 		String name = request.getParameter("name");
 		String mID = request.getParameter("mID");
@@ -24,16 +24,15 @@ public class SaveEmployee implements RequestHandler {
 		String subpractice = request.getParameter("subpractice");
 		String vertical = request.getParameter("vertical");
 		EmployeeDto employeeDto = new EmployeeDto(name, mID, competency, subpractice, vertical);
-	
-		EmployeeDao empdao=new EmployeeDao();
+
+		EmployeeDao empdao = new EmployeeDao();
 		empdao.saveEmployee(employeeDto);
 		Gson gson = new Gson();
-		Message mesg = new Message(TYPE.MESSAGE, "Employee "+name +" added successfully");
+		Message mesg = new Message(TYPE.MESSAGE, "Employee " + name + " added successfully");
 		gson.toJson(employeeDto, System.out);
 		try {
 			response.getWriter().append(gson.toJson(mesg)).close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

@@ -1,6 +1,7 @@
 package com.kn.controller;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,8 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.kn.dto.Message;
 import com.kn.dto.Message.TYPE;
+import com.kn.processor.Handler;
 import com.kn.processor.HandlerFactory;
-import com.kn.processor.RequestHandler;
 
 /**
  * Servlet implementation class FrontController
@@ -35,11 +36,22 @@ public class FrontController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String url = request.getServletPath();
-		RequestHandler handler = HandlerFactory.getRequestHandler(url);
+		Handler handler = HandlerFactory.getHandler(url);
+		Message errorMessage = null;
+		boolean hasError = false;
 		if (handler != null) {
-			handler.process(request, response);
+			try {
+				handler.invokeMethod(request, response);
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				hasError = true;
+				errorMessage = new Message(501, TYPE.ERROR, "Server dancing for: " + url);
+				e.printStackTrace();
+			}
 		} else {
-			Message errorMessage = new Message(404, TYPE.ERROR, "don't know what to do with: " + url);
+			hasError = true;
+			errorMessage = new Message(404, TYPE.ERROR, "don't know what to do with: " + url);
+		}
+		if (hasError) {
 			Gson gson = new Gson();
 			response.getWriter().append(gson.toJson(errorMessage)).close();
 		}

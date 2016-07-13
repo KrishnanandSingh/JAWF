@@ -12,10 +12,10 @@ import com.kn.dto.MetaData;
 import com.kn.processor.RequestHandler;
 import com.kn.processor.URLMapping;
 
-@URLMapping(urlPattern = "/metaData.do")
-public class FetchMeta implements RequestHandler {
+@RequestHandler
+public class FetchMeta{
 
-	@Override
+	@URLMapping(urlPattern = "/metaData.do")
 	public void process(HttpServletRequest request, HttpServletResponse response) {
 		MetaDataDao metadao=new MetaDataDao();
 		MetaData metadata=metadao.getData();
