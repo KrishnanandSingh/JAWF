@@ -3,58 +3,101 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Employee Management</title>
+<link
+	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600'
+	rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="resources/css/normalize.css">
+<link rel="stylesheet" href="resources/css/style.css">
 </head>
 <body>
 	<h1>Employee management</h1>
-	<div id="employeeForm">
-		<div id="notification"></div>
-		<form>
-			<table>
-				<tr>
-					<td>Name of the employee</td>
-					<td><input type="text" name="name"></td>
-				</tr>
-				<tr>
-					<td>Employee ID</td>
-					<td><input type="text" name="mID"></td>
-				</tr>
-				<tr>
-					<td>Competency</td>
-					<td><input type="text" name="competency"></td>
-				</tr>
-				<tr>
-					<td>Sub Practice</td>
-					<td><input type="text" name="subpractice"></td>
-				</tr>
-				<tr>
-					<td>Vertical</td>
-					<td><input type="text" name="vertical"></td>
-				</tr>
-				<tr>
-					<td><input type="button" value="Save Details"
-						onclick="saveEmployee()"></td>
-				</tr>
-			</table>
-		</form>
+	<div id="notification"></div>
+	<div class="form">
+
+		<ul class="tab-group">
+			<li class="tab active"><a href="#employeeForm">Register</a></li>
+			<li class="tab"><a href="#searchBox">Search</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div id="employeeForm">
+
+				<form>
+
+					<div class="field-wrap">
+						<label> ID<span class="req">* (only numbers)</span>
+						</label> <input type="text" required pattern="\[0-9]" autocomplete="off" />
+					</div>
+
+					<div class="field-wrap">
+						<label> Employee Name<span class="req">*</span>
+						</label> <input type="text" required autocomplete="off" />
+					</div>
+
+					<div class="top-row">
+						<div class="field-wrap">
+							<label>Competence Level<span class="req">*</span></label>
+
+						</div>
+						<div class="field-wrap">
+
+							<select id="idcompetence" name="competency"></select>
+						</div>
+					</div>
+
+					<div class="top-row">
+						<div class="field-wrap">
+							<label>Sub Practice<span class="req">*</span></label>
+
+						</div>
+						<div class="field-wrap">
+
+							<select id="idsubpractice" name="subpractice"></select>
+						</div>
+					</div>
+
+					<div class="top-row">
+						<div class="field-wrap">
+							<label>Vertical<span class="req">*</span></label>
+
+						</div>
+						<div class="field-wrap">
+
+							<select id="idvertical" name="vertical"></select>
+						</div>
+					</div>
+
+					<div class="field-wrap">
+
+						<br>
+						
+							<input type="button" class="button button-block" value="Save Details" onclick="saveEmployee()">
+					</div>
+
+				</form>
+			</div>
+
+
+			<div id="searchBox">
+				<div class="field-wrap">
+					<label> ID<span class="req">* (only numbers)</span>
+					</label> <input type="text" name='mID' required pattern="\[0-9]" autocomplete="off" />
+				</div>
+
+				<div class="field-wrap">
+					<input type="button" class="button button-block" value="Search employee" onclick="searchEmployee()">
+				</div>
+				
+				<div id="resultBox">
+				<table></table></div>
+			</div>
+		</div>
 	</div>
-	<br>
-	<br>
-	<div id="searchBox">
-		<form>
-			<table>
-				<tr>
-					<td>Employee ID</td>
-					<td><input type="text" name="mID" required></td>
-				</tr>
-				<tr>
-					<td><input type="button" value="Search employee"
-						onclick="searchEmployee()"></td>
-				</tr>
-			</table>
-		</form>
-	</div>
+
+
 	<!-- Scripts goes here  -->
 	<script type="text/javascript" src="resources/js/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="resources/js/index.js"></script>
+	<script type="text/javascript" src="resources/js/form.js"></script>
 </body>
 </html>

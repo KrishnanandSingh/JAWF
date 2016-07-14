@@ -2,24 +2,42 @@ getMeta();
 
 function getMeta(){
 	$.getJSON('metaData.do?', function(result) {
-		console.log(result);
+		
+		  $.each(result.competence, function(i, value) {
+	            $('#idcompetence').append($('<option>').text(value).attr('value', value));
+	        });
+		  
+		  $.each(result.subpractice, function(i, value) {
+	            $('#idsubpractice').append($('<option>').text(value).attr('value', value));
+	        });
+		  
+		  $.each(result.verticals, function(i, value) {
+	            $('#idvertical').append($('<option>').text(value).attr('value', value));
+	        });
 	});
 }
 
 
 function searchEmployee() {
 	var mID = $("#searchBox input[name='mID']").val();
-	console.log(mID);
 	$.getJSON('findEmployee.do?mID=' + mID, function(result) {
-		console.log(result);
+		
+		var data='';
+		data+='<tr><td><label>Employee ID</label></td><td>'+result.mID+'</td></tr>';
+		data+='<tr><td><label>Name</label></td><td>'+result.name+'</td></tr>';
+		data+='<tr><td><label>Competence Level</label></td><td>'+result.competency+'</td></tr>';
+		data+='<tr><td><label>Sub Practice</label></td><td>'+result.subpractice+'</td></tr>';
+		data+='<tr><td><label>Vertical</label></td><td>'+result.vertical+'</td></tr>';
+	
+		$('#resultBox table').append(data);
 	});
 }
 function saveEmployee() {
 	var mID = $("#employeeForm input[name='mID']").val();
 	var name = $("#employeeForm input[name='name']").val();
-	var competency = $("#employeeForm input[name='competency']").val();
-	var subpractice = $("#employeeForm input[name='subpractice']").val();
-	var vertical = $("#employeeForm input[name='vertical']").val();
+	var competency = $("#employeeForm select[name='competency']").val();
+	var subpractice = $("#employeeForm select[name='subpractice']").val();
+	var vertical = $("#employeeForm select[name='vertical']").val();
 	var employeeDetails = {
 		name : name,
 		mID : mID,
@@ -27,7 +45,7 @@ function saveEmployee() {
 		subpractice : subpractice,
 		vertical : vertical
 	};
-	console.log(employeeDetails);
+	//console.log(employeeDetails);
 	$.post('saveEmployee.do', employeeDetails, function(result) {
 		console.log(result);
 		$("#notification").empty();
