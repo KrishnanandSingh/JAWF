@@ -72,6 +72,7 @@ public class DBUtil {
 		if (rs != null) {
 			try {
 				rs.close();
+				rs = null;
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}

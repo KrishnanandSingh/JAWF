@@ -11,9 +11,9 @@
 </head>
 <body>
 	<h1>Employee management</h1>
-	
+
 	<div class="form">
-<div class="notification"></div>
+		<div class="notification"></div>
 		<ul class="tab-group">
 			<li class="tab active"><a href="#employeeForm">Register</a></li>
 			<li class="tab"><a href="#searchBox">Search</a></li>
@@ -26,7 +26,8 @@
 
 					<div class="field-wrap">
 						<label> ID<span class="req">* (only numbers)</span>
-						</label> <input type="text" name='mID'  required pattern="[0-9]+" autocomplete="off" />
+						</label> <input type="text" name='mID' required pattern="[0-9]+"
+							autocomplete="off" />
 					</div>
 
 					<div class="field-wrap">
@@ -69,9 +70,8 @@
 
 					<div class="field-wrap">
 
-						<br>
-						
-							<input type="input" class="button button-block" value="Save Details" onclick="saveEmployee()">
+						<br> <input type="button" class="button button-block"
+							value="Save Details" onclick="saveEmployee()">
 					</div>
 
 				</form>
@@ -81,15 +81,20 @@
 			<div id="searchBox">
 				<div class="field-wrap">
 					<label> ID<span class="req">* (only numbers)</span>
-					</label> <input type="text" name='mID' required pattern="[0-9]+" autocomplete="off" />
+					</label> <input type="text" name='mID' required pattern="[0-9]+"
+						autocomplete="off" />
 				</div>
 
 				<div class="field-wrap">
-					<input type="input" class="button button-block" value="Search employee" onclick="searchEmployee()">
+					<input type="button" class="button button-block"
+						value="Search employee" onclick="searchEmployee()">
 				</div>
-				
-				<div id="resultBox"><div class="field-wrap">
-				<table></table></div></div>
+
+				<div id="resultBox">
+					<div class="field-wrap">
+						<table></table>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -26,7 +26,6 @@ public class FetchMeta{
 			out.append(md);
 			out.close();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

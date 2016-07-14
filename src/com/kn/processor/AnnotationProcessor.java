@@ -26,7 +26,7 @@ public class AnnotationProcessor {
 		Set<Class<?>> classes = getAllClasses(packages);
 		Set<Class<?>> annotatedClasses = new HashSet<>();
 		for (Class<?> clazz : classes) {
-			Annotation declaredAnnotation = clazz.getDeclaredAnnotation(annotation);
+			Annotation declaredAnnotation = clazz.getAnnotation(annotation);
 			if (declaredAnnotation != null) {
 				annotatedClasses.add(clazz);
 			}
@@ -47,7 +47,7 @@ public class AnnotationProcessor {
 		Set<Class<?>> classes = getAllClasses(packages, classLoader);
 		Set<Class<?>> annotatedClasses = new HashSet<>();
 		for (Class<?> clazz : classes) {
-			Annotation declaredAnnotation = clazz.getDeclaredAnnotation(annotation);
+			Annotation declaredAnnotation = clazz.getAnnotation(annotation);
 			if (declaredAnnotation != null) {
 				annotatedClasses.add(clazz);
 			}
