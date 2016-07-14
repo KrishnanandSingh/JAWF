@@ -1,6 +1,7 @@
 getMeta();
 
 function getMeta(){
+	$(".notification").empty();
 	$.getJSON('metaData.do?', function(result) {
 		
 		  $.each(result.competence, function(i, value) {
@@ -19,27 +20,32 @@ function getMeta(){
 
 
 function searchEmployee() {
+	$(".notification").empty();
 	var mID = $("#searchBox input[name='mID']").val();
+	$('#resultBox table').find('tbody').empty();
 	$.getJSON('findEmployee.do?mID=' + mID, function(result) {
 		
 		var data='';
-		data+='<tr><td><label>Employee ID</label></td><td>'+result.mID+'</td></tr>';
-		data+='<tr><td><label>Name</label></td><td>'+result.name+'</td></tr>';
-		data+='<tr><td><label>Competence Level</label></td><td>'+result.competency+'</td></tr>';
-		data+='<tr><td><label>Sub Practice</label></td><td>'+result.subpractice+'</td></tr>';
-		data+='<tr><td><label>Vertical</label></td><td>'+result.vertical+'</td></tr>';
+		data+='<tr><td>Employee ID</td><td>'+result.mID+'</td></tr>';
+		data+='<tr><td>Name</td><td>'+result.name+'</td></tr>';
+		data+='<tr><td>Competence Level</td><td>'+result.competency+'</td></tr>';
+		data+='<tr><td>Sub Practice</td><td>'+result.subpractice+'</td></tr>';
+		data+='<tr><td>Vertical</td><td>'+result.vertical+'</td></tr>';
 	
+		
 		$('#resultBox table').append(data);
 	});
 }
 function saveEmployee() {
+	$(".notification").empty();
 	var mID = $("#employeeForm input[name='mID']").val();
 	var name = $("#employeeForm input[name='name']").val();
 	var competency = $("#employeeForm select[name='competency']").val();
 	var subpractice = $("#employeeForm select[name='subpractice']").val();
 	var vertical = $("#employeeForm select[name='vertical']").val();
+	
 	var employeeDetails = {
-		name : name,
+		name : name.toUpperCase(),
 		mID : mID,
 		competency : competency,
 		subpractice : subpractice,
@@ -47,8 +53,8 @@ function saveEmployee() {
 	};
 	//console.log(employeeDetails);
 	$.post('saveEmployee.do', employeeDetails, function(result) {
-		console.log(result);
-		$("#notification").empty();
-		$("#notification").text(result.message);
+		$(".notification").empty();
+		$(".notification").text(result.message);
 	}, 'json');
+	
 }

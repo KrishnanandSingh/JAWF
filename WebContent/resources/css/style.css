@@ -190,3 +190,17 @@ option{
   border: 1px solid #a0b3b0;
   color: #ffffff;
 }
+
+table{
+	
+  color: #ffffff;
+}
+
+table td{
+
+	width:250px;
+	border: 1px solid #a0b3b0;
+}
+.notification{
+	color: red;
+}
