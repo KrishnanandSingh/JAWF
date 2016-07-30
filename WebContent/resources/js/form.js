@@ -13,17 +13,17 @@ function getMeta() {
 
 		$.each(result.competence, function(i, value) {
 			$('#idcompetence').append(
-					$('<option>').text(value).attr('value', value));
+					$('<option>').text(value.competence_name).attr('value', value.idcompetence));
 		});
 
 		$.each(result.subpractice, function(i, value) {
 			$('#idsubpractice').append(
-					$('<option>').text(value).attr('value', value));
+					$('<option>').text(value.subpractice_name).attr('value', value.idsubpractice));
 		});
 
-		$.each(result.verticals, function(i, value) {
+		$.each(result.vertical, function(i, value) {
 			$('#idvertical').append(
-					$('<option>').text(value).attr('value', value));
+					$('<option>').text(value.vertical_name).attr('value', value.idvertical));
 		});
 	});
 }

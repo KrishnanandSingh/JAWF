@@ -59,14 +59,14 @@ CREATE TABLE `employee` (
   `employee_name` varchar(45) DEFAULT NULL,
   `idcompetence` int(11) DEFAULT NULL,
   `idsubpractice` int(11) DEFAULT NULL,
-  `idverticals` int(11) DEFAULT NULL,
+  `idvertical` int(11) DEFAULT NULL,
   PRIMARY KEY (`idemployee`),
   KEY `idcompetence_idx` (`idcompetence`),
   KEY `idsubpractice_idx` (`idsubpractice`),
-  KEY `idverticals_idx` (`idverticals`),
+  KEY `idvertical_idx` (`idvertical`),
   CONSTRAINT `idcompetence` FOREIGN KEY (`idcompetence`) REFERENCES `competence` (`idcompetence`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `idsubpractice` FOREIGN KEY (`idsubpractice`) REFERENCES `subpractice` (`idsubpractice`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `idverticals` FOREIGN KEY (`idverticals`) REFERENCES `verticals` (`idverticals`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `idvertical` FOREIGN KEY (`idvertical`) REFERENCES `vertical` (`idvertical`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -105,27 +105,27 @@ INSERT INTO `subpractice` VALUES (1,'Automation Testing'),(2,'Performance Testin
 UNLOCK TABLES;
 
 --
--- Table structure for table `verticals`
+-- Table structure for table `vertical`
 --
 
-DROP TABLE IF EXISTS `verticals`;
+DROP TABLE IF EXISTS `vertical`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `verticals` (
-  `idverticals` int(11) NOT NULL AUTO_INCREMENT,
-  `verticals_name` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`idverticals`)
+CREATE TABLE `vertical` (
+  `idvertical` int(11) NOT NULL AUTO_INCREMENT,
+  `vertical_name` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idvertical`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `verticals`
+-- Dumping data for table `vertical`
 --
 
-LOCK TABLES `verticals` WRITE;
-/*!40000 ALTER TABLE `verticals` DISABLE KEYS */;
-INSERT INTO `verticals` VALUES (1,'TTH'),(2,'RCM'),(3,'BFSI'),(4,'COE');
-/*!40000 ALTER TABLE `verticals` ENABLE KEYS */;
+LOCK TABLES `vertical` WRITE;
+/*!40000 ALTER TABLE `vertical` DISABLE KEYS */;
+INSERT INTO `vertical` VALUES (1,'TTH'),(2,'RCM'),(3,'BFSI'),(4,'COE');
+/*!40000 ALTER TABLE `vertical` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

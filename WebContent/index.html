@@ -12,19 +12,74 @@
 
 <body>
 	<h1>Employee management</h1>
+	<div id="overlayDiv">
+		<div class="form">
+			<div class="notification"></div>
+			<ul class="tab-group">
+				<li class="tab active"><a href="#employeeForm">Register</a></li>
+				<li class="tab"><a href="#searchBox">Search</a></li>
+			</ul>
 
-	<div class="form">
-		<div class="notification"></div>
-		<ul class="tab-group">
-			<li class="tab active"><a href="#employeeForm">Register</a></li>
-			<li class="tab"><a href="#searchBox">Search</a></li>
-		</ul>
+			<div class="tab-content">
+				<div id="employeeForm">
 
-		<div class="tab-content">
-			<div id="employeeForm">
+					<form>
 
-				<form>
+						<div class="field-wrap">
+							<label> ID<span class="req">* (only numbers)</span>
+							</label> <input type="text" name='mID' required pattern="[0-9]+"
+								autocomplete="off" />
+						</div>
 
+						<div class="field-wrap">
+							<label> Employee Name<span class="req">*</span>
+							</label> <input type="text" name='name' required autocomplete="off" />
+						</div>
+
+						<div class="top-row">
+							<div class="field-wrap">
+								<label>Competence Level<span class="req">*</span></label>
+
+							</div>
+							<div class="field-wrap">
+
+								<select id="idcompetence" name="competency"></select>
+							</div>
+						</div>
+
+						<div class="top-row">
+							<div class="field-wrap">
+								<label>Sub Practice<span class="req">*</span></label>
+
+							</div>
+							<div class="field-wrap">
+
+								<select id="idsubpractice" name="subpractice"></select>
+							</div>
+						</div>
+
+						<div class="top-row">
+							<div class="field-wrap">
+								<label>Vertical<span class="req">*</span></label>
+
+							</div>
+							<div class="field-wrap">
+
+								<select id="idvertical" name="vertical"></select>
+							</div>
+						</div>
+
+						<div class="field-wrap">
+
+							<br> <input type="button" class="button button-block"
+								value="Save Details" onclick="saveEmployee()">
+						</div>
+
+					</form>
+				</div>
+
+
+				<div id="searchBox">
 					<div class="field-wrap">
 						<label> ID<span class="req">* (only numbers)</span>
 						</label> <input type="text" name='mID' required pattern="[0-9]+"
@@ -32,74 +87,19 @@
 					</div>
 
 					<div class="field-wrap">
-						<label> Employee Name<span class="req">*</span>
-						</label> <input type="text" name='name' required autocomplete="off" />
+						<input type="button" class="button button-block"
+							value="Search employee" onclick="searchEmployee()">
 					</div>
 
-					<div class="top-row">
+					<div id="resultBox">
 						<div class="field-wrap">
-							<label>Competence Level<span class="req">*</span></label>
-
+							<table></table>
 						</div>
-						<div class="field-wrap">
-
-							<select id="idcompetence" name="competency"></select>
-						</div>
-					</div>
-
-					<div class="top-row">
-						<div class="field-wrap">
-							<label>Sub Practice<span class="req">*</span></label>
-
-						</div>
-						<div class="field-wrap">
-
-							<select id="idsubpractice" name="subpractice"></select>
-						</div>
-					</div>
-
-					<div class="top-row">
-						<div class="field-wrap">
-							<label>Vertical<span class="req">*</span></label>
-
-						</div>
-						<div class="field-wrap">
-
-							<select id="idvertical" name="vertical"></select>
-						</div>
-					</div>
-
-					<div class="field-wrap">
-
-						<br> <input type="button" class="button button-block"
-							value="Save Details" onclick="saveEmployee()">
-					</div>
-
-				</form>
-			</div>
-
-
-			<div id="searchBox">
-				<div class="field-wrap">
-					<label> ID<span class="req">* (only numbers)</span>
-					</label> <input type="text" name='mID' required pattern="[0-9]+"
-						autocomplete="off" />
-				</div>
-
-				<div class="field-wrap">
-					<input type="button" class="button button-block"
-						value="Search employee" onclick="searchEmployee()">
-				</div>
-
-				<div id="resultBox">
-					<div class="field-wrap">
-						<table></table>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-
 
 	<!-- Scripts goes here  -->
 	<script type="text/javascript" src="resources/js/jquery-latest.min.js"></script>

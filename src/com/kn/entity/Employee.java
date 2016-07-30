@@ -5,19 +5,19 @@ public class Employee {
 	private String employee_name;
 	private Competence competence;
 	private Subpractice subpractice;
-	private Verticals verticals;
+	private Vertical vertical;
 	public Employee() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public Employee(int idemployee, String employee_name, Competence competence, Subpractice subpractice,
-			Verticals verticals) {
+			Vertical vertical) {
 		super();
 		this.idemployee = idemployee;
 		this.employee_name = employee_name;
 		this.competence = competence;
 		this.subpractice = subpractice;
-		this.verticals = verticals;
+		this.vertical = vertical;
 	}
 	public int getIdemployee() {
 		return idemployee;
@@ -43,11 +43,11 @@ public class Employee {
 	public void setSubpractice(Subpractice subpractice) {
 		this.subpractice = subpractice;
 	}
-	public Verticals getVerticals() {
-		return verticals;
+	public Vertical getvertical() {
+		return vertical;
 	}
-	public void setVerticals(Verticals verticals) {
-		this.verticals = verticals;
+	public void setvertical(Vertical vertical) {
+		this.vertical = vertical;
 	}
 	@Override
 	public int hashCode() {
@@ -57,7 +57,7 @@ public class Employee {
 		result = prime * result + ((employee_name == null) ? 0 : employee_name.hashCode());
 		result = prime * result + idemployee;
 		result = prime * result + ((subpractice == null) ? 0 : subpractice.hashCode());
-		result = prime * result + ((verticals == null) ? 0 : verticals.hashCode());
+		result = prime * result + ((vertical == null) ? 0 : vertical.hashCode());
 		return result;
 	}
 	@Override
@@ -86,10 +86,10 @@ public class Employee {
 				return false;
 		} else if (!subpractice.equals(other.subpractice))
 			return false;
-		if (verticals == null) {
-			if (other.verticals != null)
+		if (vertical == null) {
+			if (other.vertical != null)
 				return false;
-		} else if (!verticals.equals(other.verticals))
+		} else if (!vertical.equals(other.vertical))
 			return false;
 		return true;
 	}

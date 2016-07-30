@@ -2,39 +2,68 @@ package com.kn.dto;
 
 import java.util.List;
 
+import com.kn.entity.Competence;
+import com.kn.entity.Subpractice;
+import com.kn.entity.Vertical;
+
 public class MetaData {
 
-	private List<String> competence;
-	private List<String> subpractice;
-	private List<String> verticals;
-	public List<String> getCompetence() {
-		return competence;
-	}
-	public void setCompetence(List<String> competence) {
+	private List<Competence> competence;
+	private List<Subpractice> subpractice;
+	private List<Vertical> vertical;
+	/**
+	 * @param competence
+	 * @param subpractice
+	 * @param vertical
+	 */
+	public MetaData(List<Competence> competence, List<Subpractice> subpractice, List<Vertical> vertical) {
+		super();
 		this.competence = competence;
-	}
-	public List<String> getSubpractice() {
-		return subpractice;
-	}
-	public void setSubpractice(List<String> subpractice) {
 		this.subpractice = subpractice;
+		this.vertical = vertical;
 	}
-	public List<String> getVerticals() {
-		return verticals;
-	}
-	public void setVerticals(List<String> verticals) {
-		this.verticals = verticals;
-	}
+	/**
+	 * 
+	 */
 	public MetaData() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public MetaData(List<String> competence, List<String> subpractice, List<String> verticals) {
-		super();
-		this.competence = competence;
-		this.subpractice = subpractice;
-		this.verticals = verticals;
+	/**
+	 * @return the competence
+	 */
+	public List<Competence> getCompetence() {
+		return competence;
 	}
-	
+	/**
+	 * @param competence the competence to set
+	 */
+	public void setCompetence(List<Competence> competence) {
+		this.competence = competence;
+	}
+	/**
+	 * @return the subpractice
+	 */
+	public List<Subpractice> getSubpractice() {
+		return subpractice;
+	}
+	/**
+	 * @param subpractice the subpractice to set
+	 */
+	public void setSubpractice(List<Subpractice> subpractice) {
+		this.subpractice = subpractice;
+	}
+	/**
+	 * @return the vertical
+	 */
+	public List<Vertical> getVertical() {
+		return vertical;
+	}
+	/**
+	 * @param vertical the vertical to set
+	 */
+	public void setVertical(List<Vertical> vertical) {
+		this.vertical = vertical;
+	}
 
 }
