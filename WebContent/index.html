@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
 
-<body>
+<body ng-app="employeeManagement">
 	<h1>Employee management</h1>
 	<div id="overlayDiv">
 		<div class="form">
@@ -21,10 +21,9 @@
 			</ul>
 
 			<div class="tab-content">
-				<div id="employeeForm">
+				<div ng-controller="saveController" id="employeeForm">
 
 					<form>
-
 						<div class="field-wrap">
 							<label> ID<span class="req">* (only numbers)</span>
 							</label> <input type="text" name='mID' required pattern="[0-9]+"
@@ -38,48 +37,46 @@
 
 						<div class="top-row">
 							<div class="field-wrap">
-								<label>Competence Level<span class="req">*</span></label>
-
+								<label>Competence Level</label>
 							</div>
 							<div class="field-wrap">
-
-								<select id="idcompetence" name="competency"></select>
-							</div>
-						</div>
-
-						<div class="top-row">
-							<div class="field-wrap">
-								<label>Sub Practice<span class="req">*</span></label>
-
-							</div>
-							<div class="field-wrap">
-
-								<select id="idsubpractice" name="subpractice"></select>
+								<select id="idcompetence" name="competency">
+									<option ng-repeat="comp in competenceList" value={{comp.idcompetence}}>{{comp.competence_name}}</option>
+								</select>
 							</div>
 						</div>
 
 						<div class="top-row">
 							<div class="field-wrap">
-								<label>Vertical<span class="req">*</span></label>
-
+								<label>Sub Practice</span></label>
 							</div>
 							<div class="field-wrap">
+								<select id="idsubpractice" name="subpractice">
+									<option ng-repeat="subprac in subpracticeList" value={{subprac.idsubpractice}}>{{subprac.subpractice_name}}</option>
+								</select>
+							</div>
+						</div>
 
-								<select id="idvertical" name="vertical"></select>
+						<div class="top-row">
+							<div class="field-wrap">
+								<label>Vertical</span></label>
+							</div>
+							<div class="field-wrap">
+								<select id="idvertical" name="vertical">
+									<option ng-repeat="vert in verticalList" value={{vert.idvertical}}>{{vert.vertical_name}}</option>
+								</select>
 							</div>
 						</div>
 
 						<div class="field-wrap">
-
 							<br> <input type="button" class="button button-block"
-								value="Save Details" onclick="saveEmployee()">
+								value="Save Details" ng-click="saveEmployee()">
 						</div>
 
 					</form>
 				</div>
 
-
-				<div id="searchBox">
+				<div ng-controller="searchController" id="searchBox">
 					<div class="field-wrap">
 						<label> ID<span class="req">* (only numbers)</span>
 						</label> <input type="text" name='mID' required pattern="[0-9]+"
@@ -87,13 +84,19 @@
 					</div>
 
 					<div class="field-wrap">
-						<input type="button" class="button button-block"
-							value="Search employee" onclick="searchEmployee()">
+						<input type="button" ng-click="findEmployee()" class="button button-block"
+							value="Search employee">
 					</div>
 
 					<div id="resultBox">
 						<div class="field-wrap">
-							<table></table>
+							<table style="display: none;">
+								<tr><td>Employee ID</td><td> {{employee.mID}} </td></tr>
+								<tr><td>Name</td><td>  {{employee.name }} </td></tr>
+								<tr><td>Competence Level</td><td>  {{employee.competency}}</td></tr>
+								<tr><td>Sub Practice</td><td>  {{employee.subpractice}}</td></tr>
+								<tr><td>Vertical</td><td>  {{employee.vertical}}</td></tr>
+							</table>
 						</div>
 					</div>
 				</div>
@@ -104,6 +107,10 @@
 	<!-- Scripts goes here  -->
 	<script type="text/javascript" src="resources/js/jquery-latest.min.js"></script>
 	<script type="text/javascript" src="resources/js/index.js"></script>
-	<script type="text/javascript" src="resources/js/form.js"></script>
+	<script type="text/javascript" src="resources/js/angular.min.js"></script>
+	<script type="text/javascript" src="resources/js/app/app.js"></script>
+	<script type="text/javascript" src="resources/js/service/empService.js"></script>
+	<script type="text/javascript" src="resources/js/controller/empController.js"></script>
+	
 </body>
 </html>
