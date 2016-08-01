@@ -1,5 +1,7 @@
 package com.kn.service;
 
+import java.util.List;
+
 import com.kn.dao.EmployeeDao;
 import com.kn.dao.EmployeeDaoImpl;
 import com.kn.dao.MetaDataDao;
@@ -42,6 +44,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public void saveEmployee(Employee employee) throws ServiceException {
 		empDao.saveEmployee(employee);
+	}
+
+
+	@Override
+	public List<EmployeeDto> findAllEmployees() throws ServiceException {
+		return empDao.findAllEmployees();
 	}
 
 }

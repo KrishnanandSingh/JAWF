@@ -8,7 +8,7 @@ html {
 
 body {
   background: #c1bdba;
-  font-family: 'Titillium Web', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
 a {
@@ -48,7 +48,7 @@ a:hover {
   color: #a0b3b0;
   font-size: 20px;
   float: left;
-  width: 50%;
+  width: 33%;
   text-align: center;
   cursor: pointer;
   -webkit-transition: .5s ease;
@@ -63,7 +63,7 @@ a:hover {
   color: #ffffff;
 }
 
-.tab-content > div:last-child {
+.tab-content > div:not(:first-child) {
   display: none;
 }
 

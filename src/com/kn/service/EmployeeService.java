@@ -1,5 +1,7 @@
 package com.kn.service;
 
+import java.util.List;
+
 import com.kn.dto.EmployeeDto;
 import com.kn.dto.MetaData;
 import com.kn.entity.Employee;
@@ -12,5 +14,7 @@ public interface EmployeeService {
 	public void saveEmployee(Employee employee) throws ServiceException;
 
 	public MetaData getMetaData() throws ServiceException;
+
+	public List<EmployeeDto> findAllEmployees() throws ServiceException;
 
 }

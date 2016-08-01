@@ -20,6 +20,11 @@ function($http) {
 			headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		});
 	}
-	
+	this.findAllEmployees = function(){
+		return $http({
+			method : 'GET',
+			url : 'getAllEmployees.do'
+		});
+	}
 	return this;
 });

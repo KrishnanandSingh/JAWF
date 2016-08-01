@@ -2,6 +2,7 @@ package com.kn.controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,6 @@ import com.kn.entity.Competence;
 import com.kn.entity.Employee;
 import com.kn.entity.Subpractice;
 import com.kn.entity.Vertical;
-import com.kn.exception.DaoException;
 import com.kn.exception.ServiceException;
 import com.kn.processor.RequestHandler;
 import com.kn.processor.URLMapping;
@@ -30,7 +30,7 @@ public class EmployeeController {
 	private EmployeeService empServ = new EmployeeServiceImpl();
 
 	@URLMapping(urlPattern = "/findEmployee.do")
-	public void findEmployee(HttpServletRequest request, HttpServletResponse response) throws DaoException {
+	public void findEmployee(HttpServletRequest request, HttpServletResponse response) {
 		String mID = request.getParameter("mID");
 		PrintWriter out = null;
 		Gson gson = new Gson();
@@ -40,7 +40,6 @@ public class EmployeeController {
 			String emp = gson.toJson(employee);
 			out = response.getWriter();
 			out.append(emp);
-			out.close();
 		} catch (NumberFormatException e) {
 			out.append(gson.toJson(new Message(TYPE.ERROR, "Invalid mid: " + mID)));
 		} catch (ServiceException e) {
@@ -54,7 +53,7 @@ public class EmployeeController {
 	}
 
 	@URLMapping(urlPattern = "/saveEmployee.do")
-	public void saveEmployee(HttpServletRequest request, HttpServletResponse response) throws DaoException {
+	public void saveEmployee(HttpServletRequest request, HttpServletResponse response){
 		String name = request.getParameter("name");
 		String mID = request.getParameter("mID");
 		String competencyID = request.getParameter("competency");
@@ -86,6 +85,26 @@ public class EmployeeController {
 				out.close();
 		}
 
+	}
+	
+	@URLMapping(urlPattern="/getAllEmployees.do")
+	public void getAllEmployees(HttpServletRequest request, HttpServletResponse response){
+		PrintWriter out = null;
+		Gson gson = new Gson();
+		try {
+			out = response.getWriter();
+			List<EmployeeDto> employees = empServ.findAllEmployees();
+			String emp = gson.toJson(employees);
+			out = response.getWriter();
+			out.append(emp);
+		} catch (ServiceException e) {
+			out.append(gson.toJson(new Message(TYPE.ERROR, e.getMessage())));
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			if (out != null)
+				out.close();
+		}
 	}
 
 }

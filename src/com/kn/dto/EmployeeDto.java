@@ -6,7 +6,7 @@ package com.kn.dto;
  */
 public class EmployeeDto {
 	private String name;
-	private String mID;
+	private int mID;
 	private String competency;
 	private String subpractice;
 	private String vertical;
@@ -21,7 +21,7 @@ public class EmployeeDto {
 	 * @param subpractice
 	 * @param vertical
 	 */
-	public EmployeeDto(String name, String mID, String competency, String subpractice, String vertical) {
+	public EmployeeDto(String name, int mID, String competency, String subpractice, String vertical) {
 		super();
 		this.name = name;
 		this.mID = mID;
@@ -48,7 +48,7 @@ public class EmployeeDto {
 	/**
 	 * @return the mID
 	 */
-	public String getmID() {
+	public int getmID() {
 		return mID;
 	}
 
@@ -56,7 +56,7 @@ public class EmployeeDto {
 	 * @param mID
 	 *            the mID to set
 	 */
-	public void setmID(String mID) {
+	public void setmID(int mID) {
 		this.mID = mID;
 	}
 
@@ -105,39 +105,69 @@ public class EmployeeDto {
 		this.vertical = vertical;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#hashCode()
 	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((mID == null) ? 0 : mID.hashCode());
+		result = prime * result + ((competency == null) ? 0 : competency.hashCode());
+		result = prime * result + mID;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((subpractice == null) ? 0 : subpractice.hashCode());
+		result = prime * result + ((vertical == null) ? 0 : vertical.hashCode());
 		return result;
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
+	/* (non-Javadoc)
 	 * @see java.lang.Object#equals(java.lang.Object)
 	 */
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
+		}
 		EmployeeDto other = (EmployeeDto) obj;
-		if (mID == null) {
-			if (other.mID != null)
+		if (competency == null) {
+			if (other.competency != null) {
 				return false;
-		} else if (!mID.equals(other.mID))
+			}
+		} else if (!competency.equals(other.competency)) {
 			return false;
+		}
+		if (mID != other.mID) {
+			return false;
+		}
+		if (name == null) {
+			if (other.name != null) {
+				return false;
+			}
+		} else if (!name.equals(other.name)) {
+			return false;
+		}
+		if (subpractice == null) {
+			if (other.subpractice != null) {
+				return false;
+			}
+		} else if (!subpractice.equals(other.subpractice)) {
+			return false;
+		}
+		if (vertical == null) {
+			if (other.vertical != null) {
+				return false;
+			}
+		} else if (!vertical.equals(other.vertical)) {
+			return false;
+		}
 		return true;
 	}
+
 
 }

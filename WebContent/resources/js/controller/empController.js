@@ -27,8 +27,7 @@ controller('searchController',function($scope,empService){
 		}
 	};
 	
-}).
-controller('saveController',function($scope,empService){
+}).controller('saveController',function($scope,empService){
 	$scope.subpracticeList = {};
 	$scope.competenceList = {};
 	$scope.verticalList = {};
@@ -97,5 +96,23 @@ controller('saveController',function($scope,empService){
 			$(".notification").text('Incorrect input');
 		}
 	}
+	
+}).controller("employeesController",function($scope,empService){
+	$scope.employeeList = {};
+	$scope.showEmployees = false;
+	findAllEmployees = function(){
+		$(".notification").empty();
+		$scope.showEmployees = !$scope.showEmployees;
+		if($scope.showEmployees){
+			empService.findAllEmployees().success(function(response){
+				if (JSON.stringify(response) !== '{}') {
+					$scope.employeeList = response;
+				}else{
+					$(".notification").text('No employees found');
+				}
+			});
+		}
+	};
+	findAllEmployees();
 	
 });

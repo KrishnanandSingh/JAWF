@@ -3,9 +3,6 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Employee Management</title>
-<link
-	href='http://fonts.googleapis.com/css?family=Titillium+Web:400,300,600'
-	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="resources/css/normalize.css">
 <link rel="stylesheet" href="resources/css/style.css">
 </head>
@@ -17,9 +14,9 @@
 			<div class="notification"></div>
 			<ul class="tab-group">
 				<li class="tab active"><a href="#employeeForm">Register</a></li>
-				<li class="tab"><a href="#searchBox">Search</a></li>
+				<li class="tab" ><a href="#searchBox">Search</a></li>
+				<li class="tab" ><a href="#view">View</a></li>
 			</ul>
-
 			<div class="tab-content">
 				<div ng-controller="saveController" id="employeeForm">
 
@@ -99,18 +96,59 @@
 							</table>
 						</div>
 					</div>
+					
 				</div>
+			
+				<div ng-controller="employeesController" id="view">
+						<div class="field-wrap">
+							<label>Search</label> 
+							<input type="text" ng-model="empFilter" value="Search..."/>
+						</div>
+
+						<div id="results" ng-show="showEmployees">
+							<div class="field-wrap">
+								<table>
+									<tr>
+										<th>Employee ID</th>
+										<th>Name</th>
+										<th>Competency</th>
+										<th>Sub Practice</th>
+										<th>Vertical</th>
+									</tr>
+									<tr ng-repeat="employee in employeeList | filter:empFilter" >
+										<td>{{employee.mID}}</td>
+										<td>{{employee.name }}</td>
+										<td>{{employee.competency}}</td>
+										<td>{{employee.subpractice}}</td>
+										<td>{{employee.vertical}}</td>
+									</tr>
+								</table>
+							</div>
+						</div>
+					</div>
+					
 			</div>
 		</div>
 	</div>
 
 	<!-- Scripts goes here  -->
-	<script type="text/javascript" src="resources/js/jquery-latest.min.js"></script>
-	<script type="text/javascript" src="resources/js/index.js"></script>
-	<script type="text/javascript" src="resources/js/angular.min.js"></script>
-	<script type="text/javascript" src="resources/js/app/app.js"></script>
-	<script type="text/javascript" src="resources/js/service/empService.js"></script>
-	<script type="text/javascript" src="resources/js/controller/empController.js"></script>
+	<script type="text/javascript" src="resources/js/script.min.js"></script>
+	<script type="text/javascript">
+	    // load all of the dependencies asynchronously.
+	    $script(['resources/js/angular.min.js','resources/js/jquery-latest.min.js'],function(){
+		    $script([
+			      'resources/js/index.js',
+			      'resources/js/app/app.js',
+			      'resources/js/service/empService.js',
+			      'resources/js/controller/empController.js'
+			    ], function() {
+		    	 // when all is done, execute bootstrap angular application
+			      angular.bootstrap(document, ['employeeManagement']);
+			    }
+		 	);
+		 });
+		 	
+	</script>
 	
 </body>
 </html>
