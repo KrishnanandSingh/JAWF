@@ -16,7 +16,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 
 	@Override
 	public EmployeeDto findEmployee(int mID) throws DaoException {
-		EmployeeDto employee = new EmployeeDto();
+		EmployeeDto employee = null;
 		Connection con = null;
 		Statement statement = null;
 		String sql = "SELECT idemployee,employee_name,competence_name,subpractice_name,vertical_name "
@@ -29,6 +29,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			statement = con.createStatement();
 			ResultSet rs = statement.executeQuery(sql);
 			if (rs.next()) {
+				employee = new EmployeeDto();
 				employee.setmID(rs.getInt("idemployee"));
 				employee.setName(rs.getString("employee_name"));
 				employee.setCompetency(rs.getString("competence_name"));
