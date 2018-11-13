@@ -61,7 +61,7 @@ public class EmployeeDaoImpl implements EmployeeDao {
 			ps.setInt(5,employee.getvertical().getIdvertical());
 			ps.executeUpdate();
 		} catch (Exception e) {
-			throw new DaoException(e);
+			throw new DaoException("Employee already exists with id "+employee.getIdemployee(),e);
 		} finally {
 			DBUtil.releaseResource(con, ps);
 		}
